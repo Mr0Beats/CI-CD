@@ -3,7 +3,7 @@ name: Node.js Docker CI/CD Pipeline
 on:
   push:
     branches:
-      - docker
+      - terraform
 
 jobs:
   build-and-deploy:
