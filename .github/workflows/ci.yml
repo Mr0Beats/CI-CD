@@ -57,10 +57,10 @@ jobs:
 
           cd /home/${{ secrets.EC2_USER }}/nodeapp
           
-          export DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}
-          export IMAGE_TAG=${{ env.IMAGE_TAG }}
-          
-          sudo docker pull $DOCKER_USERNAME/nodeapp:$IMAGE_TAG
-          sudo -E docker compose down || true
-          sudo -E docker compose up -d
+          echo "DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}" > .env
+          echo "IMAGE_TAG=${{ env.IMAGE_TAG }}" >> .env
+          	
+          sudo docker pull ${{ secrets.DOCKER_USERNAME }}/nodeapp:${{ env.IMAGE_TAG }}
+          sudo docker compose down || true
+          sudo docker compose up -d
           EOF
